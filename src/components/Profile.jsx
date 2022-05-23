@@ -1,17 +1,20 @@
+import s from './Profile.module.css'
+
 function Profile() {
    return (
-      <div className="content">
-         {/*<img*/}
-         {/*   src="https://helpx.adobe.com/content/dam/help/en/photoshop/using/convert-color-image-black-white/jcr_content/main-pars/before_and_after/image-before/Landscape-Color.jpg"*/}
-         {/*   alt=""/>*/}
-         <div className="profile-image"></div>
+      <div className={s.content}>
+         <div className={s.profile_image}>
+         </div>
          <div>
             Ava + description
          </div>
-         <div>
+         <div className={s.posts}>
             My posts
-            <div>
-               New post
+            <div className={s.item}>
+               Post  1
+            </div>
+            <div className={s.item}>
+               Post  2
             </div>
          </div>
       </div>

@@ -10,7 +10,7 @@ body {
 
 .container {
     margin-bottom: 10px;
-    box-shadow: grey 0 1px 5px;
+    box-shadow: grey 0 1px 3px;
     background: white;
 }
 
@@ -23,32 +23,4 @@ body {
     display: grid;
     grid-template-columns: 2fr 10fr;
     /*grid-gap: 10px;*/
-}
-
-.header {
-    margin: 0 auto;
-    max-width: 1200px;
-    grid-area: h;
-}
-
-.nav {
-    grid-area: n;
-    background: navajowhite;
-}
-
-.content {
-    grid-area: c;
-    background: cornflowerblue;
-}
-
-.profile-image {
-    background: url("https://helpx.adobe.com/content/dam/help/en/photoshop/using/convert-color-image-black-white/jcr_content/main-pars/before_and_after/image-before/Landscape-Color.jpg");
-    background-position: center;
-    background-size: cover;
-    height: 200px;
-
-}
-
-header img {
-    height: 60px;
 }

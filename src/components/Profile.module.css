@@ -1,0 +1,22 @@
+.content {
+    padding: 10px;
+    grid-area: c;
+    background: white;
+    border-radius: 10px;
+    box-shadow: grey 0 0 3px;
+}
+
+.profile_image {
+    background: url("https://helpx.adobe.com/content/dam/help/en/photoshop/using/convert-color-image-black-white/jcr_content/main-pars/before_and_after/image-before/Landscape-Color.jpg");
+    background-position: center;
+    background-size: cover;
+    height: 200px;
+    border-radius: 10px;
+
+}
+.posts {
+
+}
+.item {
+    color: grey;
+}

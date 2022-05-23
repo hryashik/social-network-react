@@ -1,0 +1,16 @@
+.nav {
+    grid-area: n;
+    /*background: navajowhite;*/
+}
+.item {
+    margin-bottom: 5px;
+    color: black;
+}
+
+.item:hover {
+    font-size: 17px;
+}
+
+.active {
+    color: cornflowerblue;
+}
