@@ -4,13 +4,12 @@
 }
 .item {
     margin-bottom: 5px;
-    color: black;
 }
 
 .item:hover {
     font-size: 17px;
 }
-
 .active {
+    text-decoration: underline;
     color: cornflowerblue;
 }
