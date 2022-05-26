@@ -1,14 +1,11 @@
 import s from './Profile.module.css'
 import MyPosts from "./MyPosts/MyPosts";
+import Profileinfo from "./Profileinfo/Profileinfo";
 
 function Profile() {
    return (
       <div className={s.content}>
-         <div className={s.profile_image}>
-         </div>
-         <div>
-            Ava + description
-         </div>
+         <Profileinfo/>
          <MyPosts/>
       </div>
    )

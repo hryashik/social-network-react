@@ -20,7 +20,7 @@ function App() {
                <div className='app-wrapper-content'>
                   <Routes>
                      <Route path='/profile' element={<Profile/>}/>
-                     <Route path='/dialogs' element={<Dialogs/>}/>
+                     <Route path='/dialogs/*' element={<Dialogs/>}/>
                      <Route path='/News' element={<News/>}/>
                      <Route path='/Music' element={<Music/>}/>
                      <Route path='/Settings' element={<Settings/>}/>

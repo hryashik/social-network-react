@@ -1,0 +1,25 @@
+.profileInfoContent {
+    padding: 10px;
+    display: flex;
+
+}
+.avatar {
+    height: 150px;
+    width: 150px;
+    background: url("https://www.buro247.ua/images/2017/09/neytiri-avatar-5824.jpg");
+    background-size: cover;
+    background-position: center;
+}
+
+.description {
+    margin-left: 20px;
+}
+
+.profile_image {
+    background: url("https://helpx.adobe.com/content/dam/help/en/photoshop/using/convert-color-image-black-white/jcr_content/main-pars/before_and_after/image-before/Landscape-Color.jpg");
+    background-position: center;
+    background-size: cover;
+    height: 200px;
+    border-radius: 10px;
+
+}

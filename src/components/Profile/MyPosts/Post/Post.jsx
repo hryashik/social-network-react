@@ -4,7 +4,7 @@ function Post(props) {
    return (
       <div className={s.item}>
          <div className={s.avatar}></div>
-         <div className={s.comment}>{props.age || 'hello'}</div>
+         <div className={s.comment}>{props.message || 'hello'}</div>
       </div>
    )
 }

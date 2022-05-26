@@ -1,0 +1,23 @@
+.dialogs {
+    padding: 10px;
+    display: grid;
+    grid-template-columns: 2fr 10fr;
+}
+.dialogsItems {
+    border-right: 2px solid cornflowerblue;
+}
+.dialog {
+    margin-bottom: 10px;
+}
+
+.messages {
+    margin-left: 20px;
+}
+
+.message {
+    margin-bottom: 15px;
+}
+
+.active a {
+    color: goldenrod;
+}

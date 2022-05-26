@@ -1,6 +1,8 @@
 *, a:visited, li {
     box-sizing: border-box;
     text-decoration: none;
+    padding: 0;
+    margin: 0;
 }
 
 body {
@@ -24,7 +26,6 @@ body {
     /*grid-gap: 10px;*/
 }
 .app-wrapper-content {
-    padding: 10px;
     grid-area: c;
     background: white;
     border-radius: 10px;
