@@ -1,4 +1,6 @@
-import {rerenderEntireTree} from "../render";
+let rerenderEntireTree = () => {
+   console.log(123)
+}
 
 let state = {
    profilePage: {
@@ -26,27 +28,41 @@ let state = {
          {id: 4, message: 'yo'},
          {id: 5, message: 'yo'}
       ],
+      textArea: {
+         value: '',
+      }
    }
 }
 
-export function addPost(text) {
+///////////////// EXPORT
+
+export function addPost() {
    let newObj = {
       id: Date.now(),
-      text: text,
+      text: state.profilePage.textAreaInput.value,
       likesCount: 1
    }
    state.profilePage.posts.push(newObj)
-   updateTextAreaState('')
+   state.profilePage.textAreaInput.value = ''
    rerenderEntireTree(state)
 }
-export function addMessage(text) {
-   let newObj = {id: Date.now(), message: text}
+export function addMessage() {
+   let newObj = {id: Date.now(), message: state.messagesPage.textArea.value}
    state.messagesPage.messages.push(newObj)
+   state.messagesPage.textArea.value = ''
+   rerenderEntireTree(state)
 }
 
 export function updateTextAreaState(text) {
    state.profilePage.textAreaInput.value = text;
    rerenderEntireTree(state)
 }
-
+export function updateTextAreaStateDialogs(text) {
+   state.messagesPage.textArea.value = text;
+   rerenderEntireTree(state)
+}
 export default state;
+
+export function subscribe(observer) {
+   rerenderEntireTree = observer;
+}

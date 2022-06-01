@@ -7,14 +7,12 @@ function MyPosts(props) {
    let postsArray = props.posts.map(el => <Post message={el.text} key={el.id}/>)
 
    function addPost() {
-      let text = textArea.current.value
-      props.addPost(text)
-      textArea.current.value = ''
+      props.addPost()
       console.log(props.posts)
    }
 
    function changeTextArea() {
-      let text = textArea.current.value;
+      let text = textArea.current.value
       props.updateTextAreaState(text);
    }
 

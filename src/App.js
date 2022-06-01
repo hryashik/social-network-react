@@ -23,7 +23,9 @@ function App(props) {
                                            updateTextAreaState={props.updateTextAreaState}
                                            addPost={props.addPost}/>}/>
                   <Route path='/dialogs/*'
-                         element={<Dialogs state={props.state.messagesPage} addMessage={props.addMessage}/>}/>
+                         element={<Dialogs messagePage={props.state.messagesPage}
+                                           addMessage={props.addMessage}
+                                           updateTextAreaStateDialogs={props.updateTextAreaStateDialogs}/>}/>
                   <Route path='/News' element={<News/>}/>
                   <Route path='/Music' element={<Music/>}/>
                   <Route path='/Settings' element={<Settings/>}/>
