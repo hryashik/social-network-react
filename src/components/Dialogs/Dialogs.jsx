@@ -1,48 +1,30 @@
 import s from './Dialogs.module.css'
-import {NavLink} from "react-router-dom";
+import DialogItem from "./Dialog/Dialog";
+import Message from "./Message/Message";
+import React from "react";
+import state from "../../redux/state";
 
-function Dialog(props) {
-   let path = '/dialogs/' + props.id
-   return (
-      <div className={s.dialog + ' ' + s.active}>
-         <NavLink to={path}>{props.name}</NavLink>
-      </div>
-   )
-}
+function Dialogs(props) {
+   function clickOnButton() {
+      let text = textArea.current.value;
+      props.addMessage(text)
+      textArea.current.value = '';
+      console.log(state.messagesPage.messages)
+   }
 
-function Message(props) {
-   return (
-      <div className={s.message}>{props.message}</div>
-   )
-}
-
-function Dialogs() {
-   let dialogsData = [
-      {id: 1, name: 'Viktor'},
-      {id: 2, name: 'Peter'},
-      {id: 3, name: 'Valera'},
-      {id: 4, name: 'Sasha'},
-      {id: 5, name: 'Dimych'},
-   ];
-
-   let dialogsArray = dialogsData.map(dialog => <Dialog name={dialog.name} id={dialog.id} key={dialog.id}/>)
-
-   let messagesData = [
-      {id: 1, message: 'Hello'},
-      {id: 2, message: 'how r u'},
-      {id: 3, message: 'Yo'},
-      {id: 4, message: 'yo'},
-      {id: 5, message: 'yo'},
-   ];
-   let messagesArray = messagesData.map(msg => <Message message={msg.message} key={msg.id}/>)
+   let textArea = React.createRef()
+   let dialogsArray = props.state.dialogs.map(dialog => <DialogItem name={dialog.name} id={dialog.id} key={dialog.id}/>)
+   let messagesArray = props.state.messages.map(msg => <Message message={msg.message} key={msg.id}/>)
 
    return (
       <div className={s.dialogs}>
          <div className={s.dialogsItems}>
-            { dialogsArray }
+            {dialogsArray}
          </div>
          <div className={s.messages}>
-            { messagesArray }
+            {messagesArray}
+            <textarea ref={textArea}></textarea>
+            <button onClick={clickOnButton}>Отправить</button>
          </div>
       </div>
    )
