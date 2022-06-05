@@ -7,9 +7,8 @@ function Profile(props) {
       <div className={s.content}>
          <Profileinfo/>
          <MyPosts posts={props.profilePage.posts}
-                  addPost={props.addPost}
                   textArea={props.profilePage.textAreaInput}
-                  updateTextAreaState={props.updateTextAreaState}/>
+                  dispatch={props.dispatch}/>
       </div>
    )
 }
