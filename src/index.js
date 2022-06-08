@@ -12,8 +12,6 @@ function rerenderEntireTree() {
       <BrowserRouter>
          <App state={store.getState()}
               dispatch={store.dispatch.bind(store)}
-              addMessage={store.addMessage.bind(store)}
-              updateTextAreaStateDialogs={store.updateTextAreaStateDialogs.bind(store)}
          />
       </BrowserRouter>
    );

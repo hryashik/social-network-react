@@ -23,8 +23,7 @@ function App(props) {
                                            dispatch={props.dispatch}/>}/>
                   <Route path='/dialogs/*'
                          element={<Dialogs messagePage={props.state.messagesPage}
-                                           addMessage={props.addMessage}
-                                           updateTextAreaStateDialogs={props.updateTextAreaStateDialogs}/>}/>
+                                           dispatch={props.dispatch}/>}/>
                   <Route path='/News' element={<News/>}/>
                   <Route path='/Music' element={<Music/>}/>
                   <Route path='/Settings' element={<Settings/>}/>

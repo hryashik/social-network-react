@@ -1,3 +1,6 @@
+import profileReducer from "./profile-reducer";
+import messagesReducer from "./messages-reducer";
+
 let store = {
    _state: {
       profilePage: {
@@ -52,10 +55,6 @@ let store = {
       this._state.messagesPage.textArea.value = "";
       this._callSubscriber(this._state);
    },
-   updateTextAreaState(text) {
-      this._state.profilePage.textAreaInput.value = text;
-      this._callSubscriber(this._state);
-   },
    updateTextAreaStateDialogs(text) {
       this._state.messagesPage.textArea.value = text;
       this._callSubscriber(this._state);
@@ -64,22 +63,13 @@ let store = {
       this._callSubscriber = observer;
    },
    dispatch(action) {
-      if (action.type === 'add-post') {
-         let newObj = {
-            id: Date.now(),
-            text: this._state.profilePage.textAreaInput.value,
-            likesCount: 1,
-         };
-         this._state.profilePage.posts.push(newObj);
-         this._state.profilePage.textAreaInput.value = "";
-         this._callSubscriber(this._state);
-      } else if (action.type === 'updateTextAreaPost') {
-         this._state.profilePage.textAreaInput.value = action.text;
-         this._callSubscriber(this._state);
-      }
+      profileReducer(this._state.profilePage, action)
+      // messagesReducer(this._state.messagesPage, action)
+      this._callSubscriber(this._state);
    }
 };
 
+window.state = store._state
 export default store;
 
 

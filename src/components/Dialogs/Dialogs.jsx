@@ -2,16 +2,15 @@ import s from './Dialogs.module.css'
 import DialogItem from "./Dialog/Dialog";
 import Message from "./Message/Message";
 import React from "react";
+import {addMessageActionCreator, changeTextAreaDialogsActionCreator} from "../../redux/messages-reducer";
 
 function Dialogs(props) {
    function clickOnButton() {
-      let text = textArea.current.value;
-      props.addMessage(text)
-      textArea.current.value = '';
+      props.dispatch(addMessageActionCreator())
    }
    function updateTextArea() {
-      let text = textArea.current.value;
-      props.updateTextAreaStateDialogs(text)
+      let text = textArea.current.value
+      props.dispatch(changeTextAreaDialogsActionCreator(text))
    }
 
    let textArea = React.createRef()

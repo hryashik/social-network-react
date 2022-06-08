@@ -1,21 +1,21 @@
 import s from "./MyPosts.module.css";
 import Post from "./Post/Post";
 import React from "react";
+import {addPostActionCreator, changeTextAreaActionCreator} from "../../../redux/profile-reducer";
 
 function MyPosts(props) {
-   let textArea = React.createRef();
    let postsArray = props.posts.map(el => (
       <Post message={el.text} key={el.id}/>
    ));
 
    function addPost() {
-      props.dispatch({type: 'add-post'})
+      props.dispatch(addPostActionCreator())
       console.log(props.posts)
    }
 
-   function changeTextArea() {
-      let text = textArea.current.value;
-      props.dispatch({type: 'updateTextAreaPost', text: text});
+   function changeTextArea(event) {
+      let text = event.target.value
+      props.dispatch(changeTextAreaActionCreator(text));
    }
 
    return (
@@ -23,7 +23,6 @@ function MyPosts(props) {
          <div>
             <textarea
                onChange={changeTextArea}
-               ref={textArea}
                className={s.textarea}
                value={props.textArea.value}
                cols="40"
