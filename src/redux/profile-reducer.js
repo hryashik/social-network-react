@@ -2,22 +2,21 @@ const ADD_POST = 'add-post';
 const UPDATE_TEXT_AREA_POST = 'updateTextAreaPost';
 
 function profileReducer(state, action) {
-   let newObj = {};
-   Object.assign(newObj, state)
-   switch (action.type) {
-      // case ADD_POST:
-      //    let newObj = {
-      //       id: Date.now(),
-      //       text: state.textAreaInput.value,
-      //       likesCount: 1,
-      //    };
-      //    state.posts.push(newObj);
-      //    state.textAreaInput.value = "";
-      //    return state
+   let newState = JSON.parse(JSON.stringify(state));
+   switch(action.type) {
+      case ADD_POST:
+         let newObj = {
+            id: Date.now(),
+            text: newState.textAreaInput.value,
+            likesCount: 1,
+         };
+         newState.posts.push(newObj);
+         console.log(newState.posts)
+         newState.textAreaInput.value = "";
+         return newState
       case UPDATE_TEXT_AREA_POST:
-         newObj.textAreaInput.value = action.text;
-         console.log(typeof newObj)
-         return newObj
+         newState.textAreaInput.value = action.text;
+         return newState
       default:
          return state
    }

@@ -2,14 +2,19 @@ const ADD_MESSAGE = 'add-message';
 const UPDATE_TEXT_AREA_DIALOGS = 'updateTextAreaDialogs';
 
 function messagesReducer(state, action) {
-   if (action.type === UPDATE_TEXT_AREA_DIALOGS) {
-      state.textArea.value = action.text;
-   } else if (action.type === ADD_MESSAGE) {
-      let newObj = {id: Date.now(), message: state.textArea.value};
-      state.messages.push(newObj);
-      state.textArea.value = "";
+   let newState = JSON.parse(JSON.stringify(state))
+   switch(action.type) {
+      case UPDATE_TEXT_AREA_DIALOGS :
+         newState.textArea.value = action.text;
+         return newState
+      case ADD_MESSAGE :
+         let newObj = {id: Date.now(), message: newState.textArea.value};
+         newState.messages.push(newObj);
+         newState.textArea.value = "";
+         return newState
+      default :
+         return state
    }
-   return state
 }
 
 export default messagesReducer;

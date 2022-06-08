@@ -10,7 +10,6 @@ function MyPosts(props) {
 
    function addPost() {
       props.dispatch(addPostActionCreator())
-      console.log(props.posts)
    }
 
    function changeTextArea(event) {

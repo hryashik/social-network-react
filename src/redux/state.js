@@ -63,8 +63,8 @@ let store = {
       this._callSubscriber = observer;
    },
    dispatch(action) {
-      profileReducer(this._state.profilePage, action)
-      // messagesReducer(this._state.messagesPage, action)
+      this._state.profilePage = profileReducer(this._state.profilePage, action)
+      this._state.messagesPage = messagesReducer(this._state.messagesPage, action)
       this._callSubscriber(this._state);
    }
 };
