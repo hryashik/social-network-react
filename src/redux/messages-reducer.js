@@ -20,6 +20,14 @@ const initialState = {
    },
 }
 
+/*МОЖНО СЭКОНОМИТЬ НА ПАМЯТИ И НЕ ДЕЛАТЬ ПОЛНУЮ КОПИЮ СТЕЙТА. НАПР: РАЗВЕРНУТЬ СПРЕДОМ ОБЪЕКТ В НОВУЮ ПЕРЕМЕННУЮ,
+НО ССЫЛКУ НА МАССИВ/ОБЪЕКТ ВНУТРИ СТЕЙТА ОСТАВИТЬ СТАРУЮ, ТЕМ САМЫМ НЕ ЗАБИРАЯ ЛИШНЮЮ ПАМЯТЬ ПОД НОВЫЙ ОБЪЕКТ/МАССИВ
+ЭТО НЕ ГЛУБОКОЕ КОПИРОВАНИЕ
+let newState = {...oldState}
+newState.textArea.value = action.text
+^^ ссылка на массив messages остается старая, ее мы не трогаем
+*/
+
 function messagesReducer(state = initialState, action) {
    let newState = JSON.parse(JSON.stringify(state))
    switch(action.type) {

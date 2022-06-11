@@ -1,22 +1,24 @@
 import s from './Dialogs.module.css'
 import React from "react";
+import DialogItem from "./Dialog/Dialog";
+import Message from "./Message/Message";
 
 function Dialogs(props) {
+   let mappedDialogs = props.dialogsArray.map(dialog => <DialogItem name={dialog.name} id={dialog.id} key={dialog.id}/>)
+   let mappedMessages = props.messagesArray.map(msg => <Message message={msg.message} key={msg.id}/>)
    function onChangeTextArea(event) {
       props.changeTextArea(event)
    }
    function onClickButton() {
       props.addMessage()
    }
-   let messages = props.messagesArray
-   let dialogs = props.dialogsArray
    return (
       <div className={s.dialogs}>
          <div className={s.dialogsItems}>
-            {dialogs}
+            {mappedDialogs}
          </div>
          <div className={s.messages}>
-            {messages}
+            {mappedMessages}
             <textarea onChange={onChangeTextArea}
                       value={props.textAreaValue}
             ></textarea>

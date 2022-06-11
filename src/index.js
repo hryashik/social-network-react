@@ -4,20 +4,18 @@ import './index.css';
 import store from "./redux/store-redux";
 import {BrowserRouter} from "react-router-dom";
 import App from "./App";
+import {Provider} from "react-redux";
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
-function rerenderEntireTree() {
-   root.render(
-      <BrowserRouter>
-            <App store={store}/>
-      </BrowserRouter>
-   );
-}
-
-rerenderEntireTree()
-
-store.subscribe(rerenderEntireTree)
+root.render(
+   <BrowserRouter>
+      <Provider store={store}>
+         <App store={store}/>
+      </Provider>
+   </BrowserRouter>
+);
 
 /*
 МОЖНО ПРОКИНУТЬ STATE В РЕНДЕР ФУНКЦИЮ, ЧТОБЫ ПРОПСЫ БРАЛИСЬ ИЗ ПРОКИНУТОГО АРГУМЕНТА.

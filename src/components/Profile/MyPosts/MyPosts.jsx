@@ -1,11 +1,13 @@
 import s from "./MyPosts.module.css";
 import React from "react";
+import Post from "./Post/Post";
 
 function MyPosts(props) {
-   let posts = props.postsArray
+   let posts = props.postsArray.map(el => (<Post message={el.text} key={el.id}/>));
    function onButton() {
       props.addPost()
    }
+
    function onChangeTextArea(event) {
       let text = event.target.value
       props.changeTextArea(text);
