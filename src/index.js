@@ -17,23 +17,3 @@ root.render(
    </BrowserRouter>
 );
 
-/*
-МОЖНО ПРОКИНУТЬ STATE В РЕНДЕР ФУНКЦИЮ, ЧТОБЫ ПРОПСЫ БРАЛИСЬ ИЗ ПРОКИНУТОГО АРГУМЕНТА.
-ТОГДА ПРИДЕТСЯ ОТРИСОВЫВАТЬ, ПЕРЕДАВАЯ СТЕЙТ. В SUBSCRIBE ПРИДЕТСЯ ТАКЖЕ ПЕРЕДАВАТЬ АРГУМЕНТ, ЧТОБЫ ПОДПИСЧИК
-ОТРИСОВЫВАЛ ПО ПРИХОДЯЩЕМУ СТЕЙТУ. ПЕРВЫЙ ВАРИАНТ ПОКАЗАЛСЯ ИНТЕРЕСНЕЕ
-
-function rerenderEntireTree(state) {
-   root.render(
-      <BrowserRouter>
-         <App state={state}
-              dispatch={store.dispatch.bind(store)}
-         />
-      </BrowserRouter>
-   );
-}
-rerenderEntireTree(store.getState())
-
-store.subscribe(() => {
-   let state = store.getState();
-   rerenderEntireTree(state)
-})*/

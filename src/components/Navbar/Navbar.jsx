@@ -16,10 +16,13 @@ function Navbar() {
             <NavLink className={(data) => data.isActive ? s.active : ''} to="/news">News</NavLink>
          </div>
          <div className={s.item}>
-            <NavLink to="/music">Music</NavLink>
+            <NavLink className={(data) => data.isActive ? s.active : ''} to="/music">Music</NavLink>
          </div>
          <div className={s.item}>
-            <NavLink to="/settings">Settings</NavLink>
+            <NavLink className={(data) => data.isActive ? s.active : ''} to="/users">Users</NavLink>
+         </div>
+         <div className={s.item}>
+            <NavLink className={(data) => data.isActive ? s.active : ''} to="/settings">Settings</NavLink>
          </div>
       </nav>
    )
