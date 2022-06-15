@@ -8,7 +8,9 @@ function mapStateToProps(state) {
    return {
       usersArray: state.usersPage.users
    }
-}function mapDispatchToProps(dispatch) {
+}
+
+function mapDispatchToProps(dispatch) {
    return {
       follow(userId) {
          dispatch(followAC(userId))

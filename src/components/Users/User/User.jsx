@@ -1,5 +1,6 @@
 import s from './User.module.css'
 
+
 export function User(props) {
    function onButtonClick() {
       if (props.followed) {

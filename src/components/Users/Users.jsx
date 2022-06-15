@@ -1,31 +1,38 @@
+import React from "react";
+import axios from "axios";
 import {User} from "./User/User";
+import userPhoto from "../../assets/1600495976_1600495958.png";
 
-function Users(props) {
-   if (props.usersArray.length === 0) {
-      props.setUsers([
-         {id: 1, imgUrl: 'https://5mod.ru/uploads/posts/2020-09/1600495976_1600495958.png',
-            followed: true, name: 'Dmitriy', status: 'hey yoYO', location: {city: 'Minsk', country: 'Belarus'}},
-         {id: 2, imgUrl: 'https://5mod.ru/uploads/posts/2020-09/1600495976_1600495958.png',
-            followed: false, name: 'Alex', status: 'fufufufu', location: {city: 'Moscow', country: 'Russia'}},
-         {id: 3, imgUrl: 'https://5mod.ru/uploads/posts/2020-09/1600495976_1600495958.png',
-            followed: false, name: 'Pavel', status: 'hey yoYO', location: {city: 'Saint-Petersburg', country: 'Russia'}},
-         {id: 4, imgUrl: 'https://5mod.ru/uploads/posts/2020-09/1600495976_1600495958.png',
-            followed: true, name: 'Boris', status: 'hey yoYO', location: {city: 'Krasnodar', country: 'Russia'}}
-      ])
+/*TEST CLASS COMPONENT*/
+
+class Users extends React.Component {
+   componentDidMount() {
+      if (this.props.usersArray.length === 0) {
+         axios.get('https://social-network.samuraijs.com/api/1.0/users')
+            .then(response => {
+               this.props.setUsers(response.data.items)
+            })
+      }
    }
-   let users = props.usersArray.map(u => <User name={u.name}
-                                               id={u.id}
-                                               followed={u.followed}
-                                               imgUrl={u.imgUrl}
-                                               key={u.id}
-                                               follow={props.follow}
-                                               unfollow={props.unfollow}/>
-   )
-   return (
-      <div>
-         {users}
-      </div>
-   )
+   get users() {
+      return this.props.usersArray.map(u => <User name={u.name}
+                                           id={u.id}
+                                           followed={u.followed}
+                                           imgUrl={u.imgUrl === undefined ? userPhoto : u.imgUrl}
+                                           key={u.id}
+                                           follow={this.props.follow}
+                                           unfollow={this.props.unfollow}/>
+      )
+   }
+
+   render() {
+      return (
+         <div>
+            <button onClick={this.getUsers}>Get users</button>
+            {this.users}
+         </div>
+      )
+   }
 }
 
 export default Users
