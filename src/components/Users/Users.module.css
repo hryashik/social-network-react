@@ -1,0 +1,15 @@
+.appWrapper {
+    padding: 10px;
+}
+.appWrapper span {
+    padding: 1px 6px;
+    font-size: 15px;
+    cursor: pointer;
+}
+.appWrapper span:hover {
+    text-decoration: underline;
+}
+.selectedPage {
+    border: 1px solid black;
+    font-weight: 500;
+}

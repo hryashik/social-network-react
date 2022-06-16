@@ -22,7 +22,7 @@ body {
     grid-template-areas:
             "n c";
     display: grid;
-    grid-template-columns: 2fr 10fr;
+    grid-template-columns: 1fr 10fr;
     /*grid-gap: 10px;*/
 }
 .app-wrapper-content {
