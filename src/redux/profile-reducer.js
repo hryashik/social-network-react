@@ -1,5 +1,7 @@
+const SET_DEFAULT_STATE = 'SET_DEFAULT_STATE';
 const ADD_POST = 'add-post';
 const UPDATE_TEXT_AREA_POST = 'updateTextAreaPost';
+const SET_USER_PROFILE = 'SET_USER_PROFILE'
 const initialState = {
    posts: [
       {id: 1, text: "My first post", likesCount: 1},
@@ -9,6 +11,7 @@ const initialState = {
    textAreaInput: {
       value: "",
    },
+   profile: null
 }
 
 function profileReducer(state = initialState, action) {
@@ -27,11 +30,17 @@ function profileReducer(state = initialState, action) {
       case UPDATE_TEXT_AREA_POST:
          newState.textAreaInput.value = action.text;
          return newState
+      case SET_USER_PROFILE:
+         return {...state, profile: action.profile}
+      case SET_DEFAULT_STATE:
+         return initialState
       default:
          return state
    }
 }
 
 export default profileReducer;
-export const addPostActionCreator = () => ({type: ADD_POST})
-export const changeTextAreaActionCreator = (text) => ({type: UPDATE_TEXT_AREA_POST, text: text})
+export const addPost = () => ({type: ADD_POST})
+export const changeTextArea = (text) => ({type: UPDATE_TEXT_AREA_POST, text: text})
+export const setUserProfile = (profile) => ({type: SET_USER_PROFILE, profile: profile})
+export const setDefaultState  = () => ({type: SET_DEFAULT_STATE})

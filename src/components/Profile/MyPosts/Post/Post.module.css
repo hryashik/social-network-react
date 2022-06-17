@@ -5,13 +5,14 @@
     align-items: center;
 }
 .avatar {
+
+}
+.avatar img {
     height: 60px;
     width: 60px;
-    background: url("https://www.buro247.ua/images/2017/09/neytiri-avatar-5824.jpg");
-    background-position: center;
-    background-size: cover;
     border-radius: 50%;
 }
+
 .comment {
     margin-left: 15px;
 }

@@ -7,7 +7,7 @@ function Navbar() {
    return (
       <nav className={s.nav}>
          <div className={s.item}>
-            <NavLink className={(data) => data.isActive ? s.active : ''} to="/profile">Profile</NavLink>
+            <NavLink className={(data) => data.isActive ? s.active : ''} to="/profile/my">Profile</NavLink>
          </div>
          <div className={s.item}>
             <NavLink className={(data) => data.isActive ? s.active : ''} to="/dialogs">Messages</NavLink>

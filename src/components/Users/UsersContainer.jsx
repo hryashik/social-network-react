@@ -1,5 +1,3 @@
-// noinspection JSUnresolvedFunction
-
 import {connect} from "react-redux";
 import {
    changeCurrentPage,
