@@ -2,7 +2,7 @@ import s from './Profileinfo.module.css'
 import background from '../../../assets/Landscape-Color.jpg'
 import avatar from '../../../assets/1600495976_1600495958.png'
 
-function Profile(props) {
+function Profileinfo(props) {
    return (
       <div>
          <div className={s.profile_image}>
@@ -24,7 +24,7 @@ function Profile(props) {
    )
 }
 
-export default Profile;
+export default Profileinfo;
 /*
 
 <div>

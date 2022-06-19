@@ -12,12 +12,12 @@ import {
 
 class ProfileContainer extends React.Component {
    componentDidMount() {
+
       let userId = this.props.router.params.userId
       setTimeout(() => (
          axios.get(`https://social-network.samuraijs.com/api/1.0/profile/` + userId)
             .then(response => this.props.setUserProfile(response.data))
       ), 1500)
-      console.log('Did mount profile-container')
    }
    componentWillUnmount() {
       this.props.setDefaultState()
@@ -50,7 +50,8 @@ function withRouter(Component) {
 }
 
 let mapStateToProps = (state) => ({
-   profile: state.profilePage.profile
+   profile: state.profilePage.profile,
+   isAuth: state.auth.isAuth
 })
 
 

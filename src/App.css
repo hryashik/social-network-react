@@ -17,7 +17,6 @@ body {
 
 .app-wrapper {
     width: 1200px;
-    padding: 5px;
     margin: 0 auto;
     grid-template-areas:
             "n c";

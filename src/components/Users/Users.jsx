@@ -7,10 +7,10 @@ function Users(props) {
    let users = props.usersArray.map(u => <User name={u.name}
                                                id={u.id}
                                                followed={u.followed}
-                                               imgUrl={u.imgUrl === undefined ? userPhoto : u.imgUrl}
+                                               imgUrl={u.photos.large || userPhoto}
                                                key={u.id}
-                                               follow={props.follow}
-                                               unfollow={props.unfollow}/>)
+                                               followUser={props.followUser}
+                                               unfollowUser={props.unfollowUser}/>)
    let totalPages = Math.ceil(props.totalUsersCount / props.pageSize)
    let pages = []
    for (let i = 1; i <= totalPages; i++) {

@@ -10,11 +10,11 @@ function mapStateToProps(state) {
       textAreaValue: state.profilePage.textAreaInput.value,
       postsArray: state.profilePage.posts,
       profilePhoto: state.profilePage.profile.photos.large,
-     get getProfilePhoto() {
+      get getProfilePhoto() {
          if (!this.profilePhoto) {
             return avatar
          } else return this.profilePhoto
-     }
+      }
    }
 }
 

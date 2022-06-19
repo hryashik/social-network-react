@@ -11,6 +11,7 @@ import React from "react";
 import axios from "axios";
 import Users from "./Users";
 import Preloader from "../Commons/Preloader";
+import {UsersAPI} from "../API/api";
 
 class UsersContainer extends React.Component {
    componentDidMount() {
@@ -18,13 +19,13 @@ class UsersContainer extends React.Component {
          this.props.toggleFetching(true)
          // IMITATE LONG FETCHING
          setTimeout(() => {
-            axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`)
+            UsersAPI.getUsers(this.props.currentPage, this.props.pageSize)
                .then(response => {
-                  this.props.setUsers(response.data.items)
+                  this.props.setUsers(response.items)
                   this.props.toggleFetching(false)
                   /*this.props.setUsersTotalCount(response.data.totalCount)*/
                })
-         }, 2000)
+         }, 1500)
       }
    }
 
@@ -33,12 +34,42 @@ class UsersContainer extends React.Component {
       this.props.toggleFetching(true)
       // IMITATE LONG FETCHING
       setTimeout(() => {
-         axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`)
+         axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`, {
+            withCredentials: true
+         })
             .then(response => {
                this.props.setUsers(response.data.items)
                this.props.toggleFetching(false)
             })
-      }, 2000)
+      }, 1500)
+   }
+
+   followUser = (userId) => {
+      if (this.props.isAuth) {
+         axios.post('https://social-network.samuraijs.com/api/1.0/follow/' + userId, {}, {
+            withCredentials: true,
+            headers: {
+               'API-KEY': '70c685fa-9017-4014-b32f-41d369f75c50'
+            }
+         })
+            .then(response => {
+               this.props.follow(userId)
+            })
+      }
+   }
+   unfollowUser = (userId) => {
+      if (this.props.isAuth) {
+         axios.delete('https://social-network.samuraijs.com/api/1.0/follow/' + userId, {
+            withCredentials: true,
+            headers: {
+               'API-KEY': '70c685fa-9017-4014-b32f-41d369f75c50'
+            }
+         })
+            .then(response => {
+               this.props.unfollow(userId)
+            })
+      }
+
    }
 
    render() {
@@ -49,11 +80,13 @@ class UsersContainer extends React.Component {
                totalUsersCount={this.props.totalUsersCount}
                pageSize={this.props.pageSize}
                usersArray={this.props.usersArray}
-               currentPage={this.props.changeCurrentPage}
+               currentPage={this.props.currentPage}
                onPageClick={this.onPageClick}
                follow={this.props.follow}
                unfollow={this.props.unfollow}
                isFetching={this.props.isFetching}
+               followUser={this.followUser}
+               unfollowUser={this.unfollowUser}
             />
          </>
       )
@@ -66,32 +99,10 @@ function mapStateToProps(state) {
       pageSize: state.usersPage.pageSize,
       totalUsersCount: state.usersPage.totalUsersCount,
       currentPage: state.usersPage.currentPage,
-      isFetching: state.usersPage.isFetching
+      isFetching: state.usersPage.isFetching,
+      isAuth: state.auth.isAuth
    }
 }
-
-/*function mapDispatchToProps(dispatch) {
-   return {
-      follow(userId) {
-         dispatch(followAC(userId))
-      },
-      unfollow(userId) {
-         dispatch(unfollowAC(userId))
-      },
-      setUsers(users) {
-         dispatch(setUsersAC(users))
-      },
-      changeCurrentPage(pageNumber) {
-         dispatch(setCurrentPageAC(pageNumber))
-      },
-      setUsersTotalCount(value) {
-         dispatch(setUsersTotalCountAC(value))
-      },
-      isFetching(value) {
-         dispatch(isFetchingAC(value))
-      }
-   }
-}*/
 
 export default connect(mapStateToProps, {
    follow,

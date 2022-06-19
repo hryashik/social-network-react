@@ -1,13 +1,17 @@
 import s from './Navbar.module.css'
 import {NavLink} from "react-router-dom";
+import {connect} from "react-redux";
+import {useEffect} from "react";
+import axios from "axios";
+import {setAuthUserData} from "../../redux/auth-reducer";
 
 
 
-function Navbar() {
+function Navbar(props) {
    return (
       <nav className={s.nav}>
          <div className={s.item}>
-            <NavLink className={(data) => data.isActive ? s.active : ''} to="/profile/my">Profile</NavLink>
+            <NavLink className={(data) => data.isActive ? s.active : ''} to={'/profile/' + props.myId}>Profile</NavLink>
          </div>
          <div className={s.item}>
             <NavLink className={(data) => data.isActive ? s.active : ''} to="/dialogs">Messages</NavLink>
@@ -28,4 +32,10 @@ function Navbar() {
    )
 }
 
-export default Navbar
+function mapStateToProps(state) {
+   return {
+      myId: state.auth.id
+   }
+}
+
+export default connect(mapStateToProps, {setAuthUserData})(Navbar)

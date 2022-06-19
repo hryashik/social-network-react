@@ -5,8 +5,8 @@ import {NavLink} from "react-router-dom";
 export function User(props) {
    function onButtonClick() {
       if (props.followed) {
-         props.unfollow(props.id)
-      } else props.follow(props.id)
+         props.unfollowUser(props.id)
+      } else props.followUser(props.id)
    }
 
    return (

@@ -1,11 +1,8 @@
 import s from './News.module.css'
-import {useEffect, useState} from "react";
+import {useState} from "react";
 
 function News() {
    let [counter, setCounter] = useState(0)
-   useEffect(() => {
-      console.log('ETP USEEFFECT')
-   });
    return (
       <div>
          <p>Counter: {counter}</p>
