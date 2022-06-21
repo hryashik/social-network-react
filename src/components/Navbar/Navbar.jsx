@@ -1,8 +1,6 @@
 import s from './Navbar.module.css'
 import {NavLink} from "react-router-dom";
 import {connect} from "react-redux";
-import {useEffect} from "react";
-import axios from "axios";
 import {setAuthUserData} from "../../redux/auth-reducer";
 
 

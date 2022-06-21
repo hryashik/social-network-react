@@ -10,7 +10,8 @@ function Users(props) {
                                                imgUrl={u.photos.large || userPhoto}
                                                key={u.id}
                                                followUser={props.followUser}
-                                               unfollowUser={props.unfollowUser}/>)
+                                               unfollowUser={props.unfollowUser}
+                                               isFollowingFetching={props.isFollowingFetching}/>)
    let totalPages = Math.ceil(props.totalUsersCount / props.pageSize)
    let pages = []
    for (let i = 1; i <= totalPages; i++) {

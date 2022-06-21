@@ -3,12 +3,6 @@ import {NavLink} from "react-router-dom";
 
 
 export function User(props) {
-   function onButtonClick() {
-      if (props.followed) {
-         props.unfollowUser(props.id)
-      } else props.followUser(props.id)
-   }
-
    return (
       <div className={s.wrapper}>
          <div className={s.avatarSection}>
@@ -16,7 +10,12 @@ export function User(props) {
                <img className={s.avatar} src={props.imgUrl} alt=":(("/>
             </NavLink>
             <button className={s.button}
-                    onClick={onButtonClick}>{props.followed ? 'unfollow' : 'follow'}</button>
+                    disabled={props.isFollowingFetching}
+                    onClick={() => {
+                       props.followed ? props.unfollowUser(props.id) : props.followUser(props.id)
+                    }}
+            >{props.followed ? 'unfollow' : 'follow'}
+            </button>
          </div>
          <div className={s.contentSection}>
             {props.name}

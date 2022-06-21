@@ -1,3 +1,5 @@
+import {UsersAPI} from "../components/API/api";
+
 const SET_DEFAULT_STATE = 'SET_DEFAULT_STATE';
 const ADD_POST = 'add-post';
 const UPDATE_TEXT_AREA_POST = 'updateTextAreaPost';
@@ -43,4 +45,11 @@ export default profileReducer;
 export const addPost = () => ({type: ADD_POST})
 export const changeTextArea = (text) => ({type: UPDATE_TEXT_AREA_POST, text: text})
 export const setUserProfile = (profile) => ({type: SET_USER_PROFILE, profile: profile})
-export const setDefaultState  = () => ({type: SET_DEFAULT_STATE})
+export const setDefaultState = () => ({type: SET_DEFAULT_STATE})
+
+export function getProfile(userId) {
+   return dispatch => {
+      UsersAPI.getProfile(userId)
+         .then(response => dispatch(setUserProfile(response.data)))
+   }
+}

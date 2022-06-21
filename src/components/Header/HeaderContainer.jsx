@@ -6,10 +6,6 @@ import {setAuthUserAvatar, setAuthUserData} from "../../redux/auth-reducer";
 class HeaderContainer extends React.Component {
    componentDidMount() {
    }
-   componentDidUpdate() {
-
-   }
-
    render() {
       return (
          <Header isAuth={this.props.isAuth}

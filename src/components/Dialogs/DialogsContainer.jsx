@@ -2,30 +2,7 @@ import {addMessageActionCreator, changeTextAreaDialogsActionCreator} from "../..
 import Dialogs from "./Dialogs";
 import {connect} from "react-redux";
 
-/*function DialogsContainer(props) {
-   let state = props.store.getState()
-
-   function addMessage() {
-      props.store.dispatch(addMessageActionCreator())
-   }
-   function changeTextArea(event) {
-      let text = event.target.value
-      props.store.dispatch(changeTextAreaDialogsActionCreator(text))
-   }
-
-   let dialogsArray = state.messagesPage.dialogs.map(dialog => <DialogItem name={dialog.name} id={dialog.id} key={dialog.id}/>)
-   let messagesArray = state.messagesPage.messages.map(msg => <Message message={msg.message} key={msg.id}/>)
-   return (
-      <Dialogs dialogsArray={dialogsArray}
-               messagesArray={messagesArray}
-               changeTextArea={changeTextArea}
-               textAreaValue={state.messagesPage.textArea.value}
-               addMessage={addMessage}
-      />
-   )
-}*/
-
-const SuperDialogsContainer = connect(mapStateToProps, mapDispatchToProps)(Dialogs)
+const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(Dialogs)
 
 function mapStateToProps(state) {
    return {
@@ -46,4 +23,4 @@ function mapDispatchToProps(dispatch) {
    }
 }
 
-export default SuperDialogsContainer
+export default DialogsContainer

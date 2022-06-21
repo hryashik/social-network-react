@@ -1,8 +1,7 @@
 import React from "react";
 import Profile from "./Profile";
-import axios from "axios";
 import {connect} from "react-redux";
-import {setUserProfile, setDefaultState} from "../../redux/profile-reducer";
+import {getProfile, setDefaultState} from "../../redux/profile-reducer";
 import Preloader from "../Commons/Preloader";
 import {
    useLocation,
@@ -14,10 +13,7 @@ class ProfileContainer extends React.Component {
    componentDidMount() {
 
       let userId = this.props.router.params.userId
-      setTimeout(() => (
-         axios.get(`https://social-network.samuraijs.com/api/1.0/profile/` + userId)
-            .then(response => this.props.setUserProfile(response.data))
-      ), 1500)
+      this.props.getProfile(userId)
    }
    componentWillUnmount() {
       this.props.setDefaultState()
@@ -55,4 +51,4 @@ let mapStateToProps = (state) => ({
 })
 
 
-export default connect(mapStateToProps, {setUserProfile, setDefaultState})(withRouter(ProfileContainer));
+export default connect(mapStateToProps, {getProfile, setDefaultState})(withRouter(ProfileContainer));
