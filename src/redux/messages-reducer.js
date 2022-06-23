@@ -45,8 +45,8 @@ function messagesReducer(state = initialState, action) {
 }
 
 export default messagesReducer;
-export const addMessageActionCreator = () => ({type: ADD_MESSAGE})
-export const changeTextAreaDialogsActionCreator = (text) => ({
+export const addMessage = () => ({type: ADD_MESSAGE})
+export const changeTextAreaDialogs = (text) => ({
    type: UPDATE_TEXT_AREA_DIALOGS,
    text: text
 })

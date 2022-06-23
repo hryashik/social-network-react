@@ -4,14 +4,11 @@ import DialogItem from "./Dialog/Dialog";
 import Message from "./Message/Message";
 
 function Dialogs(props) {
-   let mappedDialogs = props.dialogsArray.map(dialog => <DialogItem name={dialog.name} id={dialog.id} key={dialog.id}/>)
-   let mappedMessages = props.messagesArray.map(msg => <Message message={msg.message} key={msg.id}/>)
-   function onChangeTextArea(event) {
-      props.changeTextArea(event)
-   }
-   function onClickButton() {
-      props.addMessage()
-   }
+   let mappedDialogs = props.dialogsArray.map(dialog => <DialogItem name={dialog.name}
+                                                                    id={dialog.id}
+                                                                    key={dialog.id}/>)
+   let mappedMessages = props.messagesArray.map(msg => <Message message={msg.message}
+                                                                key={msg.id}/>)
    return (
       <div className={s.dialogs}>
          <div className={s.dialogsItems}>
@@ -19,10 +16,10 @@ function Dialogs(props) {
          </div>
          <div className={s.messages}>
             {mappedMessages}
-            <textarea onChange={onChangeTextArea}
+            <textarea onChange={(event) => props.changeTextAreaDialogs(event.target.value)}
                       value={props.textAreaValue}
             ></textarea>
-            <button onClick={onClickButton}
+            <button onClick={() => props.addMessage()}
             >Отправить</button>
          </div>
       </div>

@@ -10,6 +10,7 @@ function News() {
                  onClick={() => setCounter(++counter)}
          >Прибавить
          </button>
+         <h1>{counter}</h1>
       </div>
    )
 }

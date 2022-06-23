@@ -1,0 +1,11 @@
+.wrapper {
+    margin: 0 auto;
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    margin-top: 30px
+}
+.input {
+    padding: 10px 15px;
+    margin-bottom: 10px;
+}
