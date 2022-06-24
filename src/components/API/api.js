@@ -19,9 +19,33 @@ export const UsersAPI = {
       return this.instance.delete(`/follow/${userId}`)
    },
    getProfile(userId) {
-      return this.instance.get(`/profile/${userId}`)
+      console.warn('Pls use ProfileAPI')
+      return ProfileAPI.getProfile(userId)
    },
    auth() {
       return this.instance.get(`/auth/me`)
    }
 }
+
+export const ProfileAPI = {
+   instance: axios.create({
+      baseURL: 'https://social-network.samuraijs.com/api/1.0',
+      withCredentials: true,
+      headers: {
+         'API-KEY': '70c685fa-9017-4014-b32f-41d369f75c50'
+      }
+   }),
+   getProfile(userId) {
+      return this.instance.get(`/profile/${userId}`)
+   },
+   getStatus(userId) {
+      return this.instance.get(`/profile/status/${userId}`)
+         .then(response => response.data)
+   },
+   putStatus(text) {
+      return this.instance.put('profile/status', {
+         status: text
+      })
+   }
+}
+

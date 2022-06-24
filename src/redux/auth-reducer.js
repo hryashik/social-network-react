@@ -1,4 +1,4 @@
-import {UsersAPI} from "../components/API/api";
+import {ProfileAPI, UsersAPI} from "../components/API/api";
 import avatar from "../assets/1600495976_1600495958.png";
 
 const SET_AUTH_USER_DATA = 'SET_USER_DATA'
@@ -48,7 +48,7 @@ export function authMe() {
                dispatch(setAuthUserData(response.data.data))
                toggleFetchingStatus(false)
                let userId = response.data.data.id
-               UsersAPI.getProfile(userId)
+               ProfileAPI.getProfile(userId)
                   .then(response2 => {
                      let urlAvatar = response2.data.photos.large
                      dispatch(setAuthUserAvatar(urlAvatar || avatar))
