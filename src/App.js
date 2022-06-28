@@ -11,6 +11,7 @@ import HeaderContainer from "./components/Header/HeaderContainer";
 import {authMe} from "./redux/auth-reducer";
 import {connect} from "react-redux";
 import LoginPage from "./components/Login/LoginPage";
+import React from "react";
 
 function App(props) {
    if (!props.isAuth) props.authMe()
@@ -24,10 +25,8 @@ function App(props) {
             <div className='app-wrapper-content'>
                <Routes>
                   <Route path='/login' element={<LoginPage/>}/>
-                  <Route path='/profile/:userId'
-                         element={<ProfileContainer/>}/>
-                  <Route path='/dialogs/*'
-                         element={<DialogsContainer/>}/>}/>
+                  <Route path='/profile/:userId' element={<ProfileContainer/>}/>
+                  <Route path='/dialogs/*' element={<DialogsContainer/>}/>}/>
                   <Route path='/News' element={<News/>}/>
                   <Route path='/Music' element={<Music/>}/>
                   <Route path='/Users' element={<UsersContainer/>}/>
@@ -42,7 +41,8 @@ function App(props) {
 function mapStateToProps(state) {
    return {
       isAuth: state.auth.isAuth,
-      UserId: state.auth.id
+      UserId: state.auth.id,
+      profile: state.profilePage
    }
 }
 

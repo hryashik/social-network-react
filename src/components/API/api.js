@@ -23,7 +23,8 @@ export const UsersAPI = {
       return ProfileAPI.getProfile(userId)
    },
    auth() {
-      return this.instance.get(`/auth/me`)
+      console.warn('Pls use new methods of AuthAPI')
+      return AuthAPI.auth()
    }
 }
 
@@ -46,6 +47,29 @@ export const ProfileAPI = {
       return this.instance.put('profile/status', {
          status: text
       })
+   }
+}
+
+export const AuthAPI = {
+   instance: axios.create({
+      baseURL: 'https://social-network.samuraijs.com/api/1.0/auth',
+      withCredentials: true,
+      headers: {
+         'API-KEY': '70c685fa-9017-4014-b32f-41d369f75c50'
+      }
+   }),
+   auth() {
+      return this.instance.get(`/me`)
+   },
+   login(email, password, cookie) {
+      return this.instance.post(`/login`, {
+         email: email,
+         password: password,
+         rememberMe: cookie
+      })
+   },
+   logout() {
+      return this.instance.delete(`/login`)
    }
 }
 

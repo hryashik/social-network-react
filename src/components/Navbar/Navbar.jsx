@@ -1,7 +1,8 @@
 import s from './Navbar.module.css'
 import {NavLink} from "react-router-dom";
 import {connect} from "react-redux";
-import {setAuthUserData} from "../../redux/auth-reducer";
+import {logout} from "../../redux/auth-reducer";
+
 
 
 
@@ -26,6 +27,7 @@ function Navbar(props) {
          <div className={s.item}>
             <NavLink className={(data) => data.isActive ? s.active : ''} to="/settings">Settings</NavLink>
          </div>
+         <button onClick={() => props.logout()}>Logout</button>
       </nav>
    )
 }
@@ -36,4 +38,4 @@ function mapStateToProps(state) {
    }
 }
 
-export default connect(mapStateToProps, {setAuthUserData})(Navbar)
+export default connect(mapStateToProps, {logout})(Navbar)

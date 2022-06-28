@@ -1,9 +1,11 @@
-import {ProfileAPI, UsersAPI} from "../components/API/api";
+import {AuthAPI, ProfileAPI, UsersAPI} from "../components/API/api";
 import avatar from "../assets/1600495976_1600495958.png";
+
 
 const SET_AUTH_USER_DATA = 'SET_USER_DATA'
 const SET_AUTH_USER_AVATAR = 'SET_AUTH_USER_AVATAR'
 const TOGGLE_FETCHING_STATUS = 'TOGGLE_FETCHING_STATUS'
+const SET_DEFAULT_STATE = 'SET_DEFAULT_STATE'
 
 const initialState = {
    id: null,
@@ -32,6 +34,8 @@ function authReducer(state = initialState, action) {
             ...state,
             isFetchingStatus: action.value
          }
+      case SET_DEFAULT_STATE:
+         return initialState
       default:
          return state
    }
@@ -58,6 +62,30 @@ export function authMe() {
    }
 }
 
+export function login(data) {
+   return (dispatch) => {
+      AuthAPI.login(data.email, data.password, data.rememberMe)
+         .then(response => {
+            console.log(response)
+            if (response.data.resultCode === 0) {
+               dispatch(authMe())
+            }
+         })
+   }
+}
+
+export function logout() {
+   return dispatch => {
+      AuthAPI.logout()
+         .then(response => {
+            if (response.data.resultCode === 0) {
+               dispatch(setDefaultState())
+            }
+         })
+   }
+}
+
+const setDefaultState = () => ({type: SET_DEFAULT_STATE})
 export const setAuthUserData = (data) => ({type: SET_AUTH_USER_DATA, data: data})
 export const setAuthUserAvatar = (url) => ({type: SET_AUTH_USER_AVATAR, url})
 const toggleFetchingStatus = (value) => ({type: TOGGLE_FETCHING_STATUS, value})

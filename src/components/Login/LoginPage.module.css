@@ -3,11 +3,20 @@
     width: 300px;
     display: flex;
     flex-direction: column;
-    margin-top: 30px
+    margin-top: 30px;
 }
-.input {
+
+.wrapper p {
+    color: red;
+    margin: 0;
+}
+
+.wrapperItem {
+    margin-bottom: 8px;
+}
+.wrapperItem input{
+    width: 300px;
     padding: 10px 15px;
-    margin-bottom: 10px;
 }
 .button {
     padding: 10px 15px;

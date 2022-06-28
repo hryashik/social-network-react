@@ -51,7 +51,7 @@ function profileReducer(state = initialState, action) {
 export default profileReducer;
 export const addPost = () => ({type: ADD_POST})
 export const changeTextArea = (text) => ({type: UPDATE_TEXT_AREA_POST, text: text})
-export const setUserProfile = (profile) => ({type: SET_USER_PROFILE, profile: profile})
+const setUserProfile = (profile) => ({type: SET_USER_PROFILE, profile: profile})
 export const setDefaultState = () => ({type: SET_DEFAULT_STATE})
 const setStatus = (text) => ({type: SET_STATUS, status: text})
 

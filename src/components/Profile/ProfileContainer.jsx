@@ -14,7 +14,7 @@ class ProfileContainer extends React.Component {
 
    }
    componentWillUnmount() {
-      console.log('UNMOUNTED PROFILE CONTAINER')
+
       this.props.setDefaultState()
    }
    render() {
