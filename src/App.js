@@ -11,10 +11,15 @@ import HeaderContainer from "./components/Header/HeaderContainer";
 import {authMe} from "./redux/auth-reducer";
 import {connect} from "react-redux";
 import LoginPage from "./components/Login/LoginPage";
-import React from "react";
+import React, {useEffect} from "react";
+import {initializeApp} from "./redux/app-reducer";
+import Preloader from "./components/Commons/Preloader";
 
 function App(props) {
-   if (!props.isAuth) props.authMe()
+   useEffect(() => {
+      props.initializeApp()
+   }, [])
+   if (!props.initialized) return <Preloader/>
    return (
       <div>
          <div className="container">
@@ -40,10 +45,11 @@ function App(props) {
 
 function mapStateToProps(state) {
    return {
+      initialized: state.app.initialized,
       isAuth: state.auth.isAuth,
       UserId: state.auth.id,
       profile: state.profilePage
    }
 }
 
-export default connect(mapStateToProps, {authMe})(App);
+export default connect(mapStateToProps, {authMe, initializeApp})(App);

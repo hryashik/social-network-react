@@ -2,7 +2,7 @@ import {addMessage, changeTextAreaDialogs} from "../../redux/messages-reducer";
 import Dialogs from "./Dialogs";
 import {connect} from "react-redux";
 import React from 'react'
-import {withAuthRedirect} from '../Hoc/WithAuthRedirect'
+import {checkAuth} from '../Hoc/WithAuthRedirect'
 import {compose} from "redux";
 
 class DialogsContainer extends React.Component {
@@ -21,5 +21,5 @@ function mapStateToProps(state) {
 
 export default compose(
    connect(mapStateToProps, {addMessage, changeTextAreaDialogs}),
-   withAuthRedirect
+   checkAuth
 )(DialogsContainer)

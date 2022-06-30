@@ -3,6 +3,7 @@ import {getUsers, followSuccess, unfollowSuccess} from "../../redux/users-reduce
 import React from "react";
 import Users from "./Users";
 import Preloader from "../Commons/Preloader";
+import {getProfile} from "../../redux/profile-reducer";
 
 class UsersContainer extends React.Component {
    componentDidMount() {
@@ -26,6 +27,7 @@ class UsersContainer extends React.Component {
                followUser={this.props.followSuccess}
                unfollowUser={this.props.unfollowSuccess}
                isFollowingFetching={this.props.isFollowingFetching}
+               getProfile={this.props.getProfile}
             />
          </>
       )
@@ -47,5 +49,6 @@ function mapStateToProps(state) {
 export default connect(mapStateToProps, {
    getUsers,
    followSuccess,
-   unfollowSuccess
+   unfollowSuccess,
+   getProfile
 })(UsersContainer)

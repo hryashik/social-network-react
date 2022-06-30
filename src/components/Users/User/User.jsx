@@ -13,8 +13,8 @@ export function User(props) {
                     disabled={props.isFollowingFetching}
                     onClick={() => {
                        props.followed ? props.unfollowUser(props.id) : props.followUser(props.id)
-                    }}
-            >{props.followed ? 'unfollow' : 'follow'}
+                    }}>
+               {props.followed ? 'unfollow' : 'follow'}
             </button>
          </div>
          <div className={s.contentSection}>

@@ -46,7 +46,7 @@ export default authReducer
 export function authMe() {
    return dispatch => {
       toggleFetchingStatus(true)
-      UsersAPI.auth()
+      return AuthAPI.auth()
          .then(response => {
             if (response.data.resultCode === 0) {
                dispatch(setAuthUserData(response.data.data))

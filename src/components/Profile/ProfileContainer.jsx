@@ -4,25 +4,26 @@ import {connect} from "react-redux";
 import {getProfile, setDefaultState, updateStatus} from "../../redux/profile-reducer";
 import Preloader from "../Commons/Preloader";
 import {useLocation, useNavigate, useParams} from "react-router-dom";
-import {withAuthRedirect} from "../Hoc/WithAuthRedirect";
+import {checkAuth} from "../Hoc/WithAuthRedirect";
 import {compose} from "redux";
 
 class ProfileContainer extends React.Component {
+
    componentDidMount() {
       let userId = this.props.router.params.userId
       this.props.getProfile(userId)
-
    }
    componentWillUnmount() {
 
-      this.props.setDefaultState()
+      /*this.props.setDefaultState()*/
    }
+
    render() {
       if (!this.props.profile) {
          return (<div style={{position: 'absolute', left: '50%'}}><Preloader/></div>)
       }
       return (
-         <Profile {...this.props}/>
+            <Profile {...this.props}/>
       )
    }
 }
@@ -36,7 +37,7 @@ function withRouter(Component) {
       return (
          <Component
             {...props}
-            router={{ location, navigate, params }}
+            router={{location, navigate, params}}
          />
       );
    }
@@ -52,5 +53,5 @@ let mapStateToProps = (state) => ({
 export default compose(
    connect(mapStateToProps, {getProfile, setDefaultState, updateStatus}),
    withRouter,
-   withAuthRedirect
+   checkAuth
 )(ProfileContainer)

@@ -6,15 +6,8 @@ import {useForm} from "react-hook-form";
 import {login} from "../../redux/auth-reducer";
 
 function LoginPage(props) {
-   if (props.isFetchingStatus) {
-      return (
-         <Preloader/>
-      )
-   } else if (!props.isFetchingStatus && props.id) {
-      return (
-         <Navigate to={`/profile/${props.id}`}/>
-      )
-   }
+ if(props.isAuth) return <Navigate to={'/profile/' + props.id}/>
+
    return (
       <div>
          <LoginForm sendForm={props.login}/>

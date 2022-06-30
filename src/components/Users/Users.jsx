@@ -5,6 +5,7 @@ import userPhoto from "../../assets/1600495976_1600495958.png";
 
 function Users(props) {
    let users = props.usersArray.map(u => <User name={u.name}
+                                               getProfile={props.getProfile}
                                                id={u.id}
                                                followed={u.followed}
                                                imgUrl={u.photos.large || userPhoto}

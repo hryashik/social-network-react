@@ -6,6 +6,7 @@ import {authMe, setAuthUserAvatar, setAuthUserData} from "../../redux/auth-reduc
 class HeaderContainer extends React.Component {
    componentDidMount() {
       console.log('Header Mounted')
+      /*if (!this.props.isAuth) this.props.authMe()*/
    }
    render() {
 
