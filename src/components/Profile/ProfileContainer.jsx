@@ -19,6 +19,7 @@ class ProfileContainer extends React.Component {
    }
 
    render() {
+      console.log('RENDER PROFILE')
       if (!this.props.profile) {
          return (<div style={{position: 'absolute', left: '50%'}}><Preloader/></div>)
       }
@@ -45,10 +46,12 @@ function withRouter(Component) {
    return ComponentWithRouterProp;
 }
 
-let mapStateToProps = (state) => ({
-   profile: state.profilePage.profile,
-   profileStatus: state.profilePage.profileStatus
-})
+let mapStateToProps = (state) => {
+   return {
+      profile: state.profilePage.profile,
+      profileStatus: state.profilePage.profileStatus
+   }
+}
 
 export default compose(
    connect(mapStateToProps, {getProfile, setDefaultState, updateStatus}),

@@ -19,8 +19,7 @@ function Users(props) {
       pages.push(i)
    }
    return (
-      <div
-         className={s.appWrapper}>
+      <div className={s.appWrapper}>
          {pages.map(p => <span key={p}
                                onClick={() => props.onPageClick(p)}
                                className={props.currentPage === p ? s.selectedPage : ''}>{p}</span>)}

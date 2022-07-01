@@ -15,25 +15,32 @@ const initialState = {
       value: "",
    },
    profile: null,
-   profileStatus: null
+   profileStatus: null,
+   fake: 0
 }
 
 function profileReducer(state = initialState, action) {
-   let newState = JSON.parse(JSON.stringify(state));
    switch(action.type) {
+      case "FAKE": return {...state, fake: state.fake + 1}
       case ADD_POST:
-         let newObj = {
+         let newPost = {
             id: Date.now(),
-            text: newState.textAreaInput.value,
+            text: state.textAreaInput.value,
             likesCount: 1,
-         };
-         newState.posts.push(newObj);
-         console.log(newState.posts)
-         newState.textAreaInput.value = "";
-         return newState
+         }
+         state.posts.push(newPost)
+         return {
+            ...state,
+            posts: [...state.posts],
+            textAreaInput: {...state.textAreaInput, value: ''}
+
+         }
       case UPDATE_TEXT_AREA_POST:
-         newState.textAreaInput.value = action.text;
-         return newState
+        return {
+           ...state,
+           textAreaInput: {...state.textAreaInput, value: action.text}
+
+        }
       case SET_USER_PROFILE:
          return {...state, profile: action.profile}
       case SET_DEFAULT_STATE:

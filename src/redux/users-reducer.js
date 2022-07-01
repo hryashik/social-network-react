@@ -13,7 +13,7 @@ const initialState = {
    totalUsersCount: 100,
    currentPage: 1,
    isFetching: false,
-   isFollowingFetching: false
+   isFollowingFetching: false,
 }
 
 function usersReducer(state = initialState, action) {

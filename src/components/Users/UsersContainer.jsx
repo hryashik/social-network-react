@@ -4,6 +4,14 @@ import React from "react";
 import Users from "./Users";
 import Preloader from "../Commons/Preloader";
 import {getProfile} from "../../redux/profile-reducer";
+import {
+   getCurrentPage,
+   getIsAuth,
+   getIsFetching, getIsFollowingFetching,
+   getPageSize,
+   getTotalUsersCount,
+   getUsersArray, getUsersFilteredArray
+} from "../../redux/users-selectors";
 
 class UsersContainer extends React.Component {
    componentDidMount() {
@@ -36,13 +44,13 @@ class UsersContainer extends React.Component {
 
 function mapStateToProps(state) {
    return {
-      usersArray: state.usersPage.users,
-      pageSize: state.usersPage.pageSize,
-      totalUsersCount: state.usersPage.totalUsersCount,
-      currentPage: state.usersPage.currentPage,
-      isFetching: state.usersPage.isFetching,
-      isAuth: state.auth.isAuth,
-      isFollowingFetching: state.usersPage.isFollowingFetching
+      usersArray: getUsersFilteredArray(state),
+      pageSize: getPageSize(state),
+      totalUsersCount: getTotalUsersCount(state),
+      currentPage: getCurrentPage(state),
+      isFetching: getIsFetching(state),
+      isAuth: getIsAuth(state),
+      isFollowingFetching: getIsFollowingFetching(state)
    }
 }
 
