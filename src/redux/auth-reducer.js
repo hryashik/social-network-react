@@ -66,7 +66,6 @@ export function login(data) {
    return (dispatch) => {
       AuthAPI.login(data.email, data.password, data.rememberMe)
          .then(response => {
-            console.log(response)
             if (response.data.resultCode === 0) {
                dispatch(authMe())
             }
