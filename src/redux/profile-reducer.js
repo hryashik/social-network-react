@@ -2,6 +2,7 @@ import {ProfileAPI} from "../components/API/api";
 
 const SET_DEFAULT_STATE = 'SET_DEFAULT_STATE';
 const ADD_POST = 'add-post';
+const DELETE_POST = 'DELETE_POST'
 const UPDATE_TEXT_AREA_POST = 'updateTextAreaPost';
 const SET_USER_PROFILE = 'SET_USER_PROFILE'
 const SET_STATUS = 'SET_STATUS'
@@ -16,12 +17,10 @@ const initialState = {
    },
    profile: null,
    profileStatus: null,
-   fake: 0
 }
 
 function profileReducer(state = initialState, action) {
    switch(action.type) {
-      case "FAKE": return {...state, fake: state.fake + 1}
       case ADD_POST:
          let newPost = {
             id: Date.now(),
@@ -35,6 +34,8 @@ function profileReducer(state = initialState, action) {
             textAreaInput: {...state.textAreaInput, value: ''}
 
          }
+      case DELETE_POST:
+         return {...state, posts: state.posts.filter(post => post.id !== action.postId)}
       case UPDATE_TEXT_AREA_POST:
         return {
            ...state,
@@ -61,6 +62,7 @@ export const changeTextArea = (text) => ({type: UPDATE_TEXT_AREA_POST, text: tex
 const setUserProfile = (profile) => ({type: SET_USER_PROFILE, profile: profile})
 export const setDefaultState = () => ({type: SET_DEFAULT_STATE})
 const setStatus = (text) => ({type: SET_STATUS, status: text})
+export const deletePost = (postId) => ({type: DELETE_POST, postId})
 
 export function getProfile(userId) {
    return dispatch => {
