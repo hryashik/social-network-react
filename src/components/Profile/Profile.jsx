@@ -7,7 +7,8 @@ function Profile(props) {
       <div className={s.content}>
          <Profileinfo profile={props.profile}
                       profileStatus={props.profileStatus}
-                      updateStatus={props.updateStatus}/>
+                      updateStatus={props.updateStatus}
+                      updateAvatar={props.updateAvatar}/>
          <MyPostsContainer/>
       </div>
    )

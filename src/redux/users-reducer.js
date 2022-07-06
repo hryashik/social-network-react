@@ -84,7 +84,6 @@ export function getUsers(currentPage, pageSize,) {
       setTimeout(() => {
          UsersAPI.getUsers(currentPage, pageSize)
             .then(response => {
-               console.log(response)
                dispatch(setUsers(response.items))
                dispatch(toggleFetching(false))
                dispatch(changeCurrentPage(currentPage))

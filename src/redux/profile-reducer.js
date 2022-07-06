@@ -6,6 +6,7 @@ const DELETE_POST = 'DELETE_POST'
 const UPDATE_TEXT_AREA_POST = 'updateTextAreaPost';
 const SET_USER_PROFILE = 'SET_USER_PROFILE'
 const SET_STATUS = 'SET_STATUS'
+const SET_PHOTO = 'SET_PHOTO'
 const initialState = {
    posts: [
       {id: 1, text: "My first post", likesCount: 1},
@@ -51,6 +52,11 @@ function profileReducer(state = initialState, action) {
             ...state,
             profileStatus: action.status
          }
+      case SET_PHOTO:
+         return {
+            ...state,
+            profile: {...state.profile, photos: {...action.object}}
+         }
       default:
          return state
    }
@@ -63,6 +69,7 @@ const setUserProfile = (profile) => ({type: SET_USER_PROFILE, profile: profile})
 export const setDefaultState = () => ({type: SET_DEFAULT_STATE})
 const setStatus = (text) => ({type: SET_STATUS, status: text})
 export const deletePost = (postId) => ({type: DELETE_POST, postId})
+const setPhoto = (object) => ({type: SET_PHOTO, object})
 
 export function getProfile(userId) {
    return dispatch => {
@@ -77,6 +84,18 @@ export function getProfile(userId) {
          })
    }
 }
+
+export function updateAvatar(file) {
+   return dispatch => {
+      ProfileAPI.updatePhoto(file)
+         .then(response => {
+            if (response.data.resultCode === 0) {
+               dispatch(setPhoto(response.data.data.photos))
+            }
+         })
+   }
+}
+
 export function updateStatus(text) {
    return dispatch => {
       ProfileAPI.putStatus(text)

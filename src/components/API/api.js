@@ -30,23 +30,29 @@ export const UsersAPI = {
 
 export const ProfileAPI = {
    instance: axios.create({
-      baseURL: 'https://social-network.samuraijs.com/api/1.0',
+      baseURL: 'https://social-network.samuraijs.com/api/1.0/profile',
       withCredentials: true,
       headers: {
          'API-KEY': '70c685fa-9017-4014-b32f-41d369f75c50'
       }
    }),
    getProfile(userId) {
-      return this.instance.get(`/profile/${userId}`)
+      return this.instance.get(`/${userId}`)
    },
    getStatus(userId) {
-      return this.instance.get(`/profile/status/${userId}`)
+      return this.instance.get(`/status/${userId}`)
          .then(response => response.data)
    },
    putStatus(text) {
-      return this.instance.put('profile/status', {
+      return this.instance.put('/status', {
          status: text
       })
+   },
+   updatePhoto(file) {
+      const formData = new FormData()
+      formData.append('image', file)
+      // formData сама сформирует заголовок content-type
+      return this.instance.put('/photo', formData)
    }
 }
 

@@ -1,7 +1,7 @@
 import React from "react";
 import Profile from "./Profile";
 import {connect} from "react-redux";
-import {getProfile, setDefaultState, updateStatus} from "../../redux/profile-reducer";
+import {getProfile, setDefaultState, updateAvatar, updateStatus} from "../../redux/profile-reducer";
 import Preloader from "../Commons/Preloader";
 import {useLocation, useNavigate, useParams} from "react-router-dom";
 import {checkAuth} from "../Hoc/WithAuthRedirect";
@@ -19,16 +19,14 @@ class ProfileContainer extends React.Component {
       this.props.getProfile(userId)
    }
    componentDidUpdate(prevProps, prevState, snapshot) {
+      // checking prev state and url. if != then again use getProfile with new Url and change state
       if (this.props.router.params.userId !== this.state.userId) {
          this.setState({userId: this.props.router.params.userId})
-         console.log(this.state.userId)
          this.props.getProfile(this.props.router.params.userId)
-         setTimeout(() => console.log(this.state.userId), 1000)
       }
    }
 
    render() {
-      console.log('RENDER PROFILE')
       if (!this.props.profile) {
          return (<div style={{position: 'absolute', left: '50%'}}><Preloader/></div>)
       }
@@ -63,7 +61,7 @@ let mapStateToProps = (state) => {
 }
 
 export default compose(
-   connect(mapStateToProps, {getProfile, setDefaultState, updateStatus}),
+   connect(mapStateToProps, {getProfile, setDefaultState, updateStatus, updateAvatar}),
    withRouter,
    checkAuth
 )(ProfileContainer)

@@ -4,21 +4,24 @@
     display: flex;
 
 }
+
 .avatar {
     height: 150px;
     width: 150px;
-    object-fit: cover;
 }
 
 .description {
     margin-left: 20px;
 }
+
 .name {
     text-transform: capitalize;
 }
+
 .profile_image {
     height: 200px;
 }
+
 .profile_image img {
     height: 100%;
     width: 100%;
@@ -26,3 +29,25 @@
     object-position: 50% 60%;
     border-radius: 10px;
 }
+
+.avatar__wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.avatar__wrapper img {
+    text-align: center;
+}
+
+.avatar__wrapper :first-child {
+    opacity: 0;
+    cursor: pointer;
+}
+
+.avatar__wrapper:hover :first-child {
+    opacity: 1;
+    transition: 0.5s;
+}
+
