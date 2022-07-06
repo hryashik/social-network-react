@@ -8,14 +8,23 @@ import {checkAuth} from "../Hoc/WithAuthRedirect";
 import {compose} from "redux";
 
 class ProfileContainer extends React.Component {
-
+   constructor(props) {
+      super(props);
+      this.state = {
+         userId: this.props.router.params.userId
+      }
+   }
    componentDidMount() {
       let userId = this.props.router.params.userId
       this.props.getProfile(userId)
    }
-   componentWillUnmount() {
-
-      /*this.props.setDefaultState()*/
+   componentDidUpdate(prevProps, prevState, snapshot) {
+      if (this.props.router.params.userId !== this.state.userId) {
+         this.setState({userId: this.props.router.params.userId})
+         console.log(this.state.userId)
+         this.props.getProfile(this.props.router.params.userId)
+         setTimeout(() => console.log(this.state.userId), 1000)
+      }
    }
 
    render() {

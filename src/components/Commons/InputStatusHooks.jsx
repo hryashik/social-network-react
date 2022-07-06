@@ -1,7 +1,12 @@
-import { useState } from 'react';
+import {useEffect, useState} from 'react';
 import s from './InputStatus.module.css';
 
 function InputStatusHooks(props) {
+	useEffect(() => {
+		if (props.status !== status) {
+			setStatus(props.status)
+		}
+	}, [props.status])
 	const [editMode, setEditMode] = useState(false);
 	const [status, setStatus] = useState(props.status);
 	function activateEditMode() {

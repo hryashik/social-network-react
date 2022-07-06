@@ -10,7 +10,7 @@ import {
    getIsFetching, getIsFollowingFetching,
    getPageSize,
    getTotalUsersCount,
-   getUsersArray, getUsersFilteredArray
+   getUsersFilteredArray
 } from "../../redux/users-selectors";
 
 class UsersContainer extends React.Component {

@@ -1,4 +1,4 @@
-import {AuthAPI, ProfileAPI, UsersAPI} from "../components/API/api";
+import {AuthAPI, ProfileAPI} from "../components/API/api";
 import avatar from "../assets/1600495976_1600495958.png";
 
 
